@@ -1,0 +1,15 @@
+# Directories #
+/build/
+/bin/
+target/
+.idea
+classes/
+META-INF/
+/out/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.db
+*.iml
