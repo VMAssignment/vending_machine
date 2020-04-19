@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class MainFrame  extends JFrame {
 //
@@ -131,8 +132,48 @@ public class MainFrame  extends JFrame {
 
         this.setVisible(true);
     }
+    public static class item{
+        String name;
+        int cost;
+        int amount;
+    }//item 객체
 
     public static void main(String[] args){
         new MainFrame().on();
+        Scanner scan = new Scanner(System.in);
+        int[][] coin = {{500,0}, {160,0}, {100,0}, {50,0}, {10,0}}; // 동전의 종류, 사용된 갯수
+
+        item item1 = new item();
+        item1.name="one";
+        item1.cost=50;
+        item1.amount=0;
+
+        item item2 = new item();
+        item2.name="two";
+        item2.cost=100;
+        item2.amount=0;
+
+        item item3 = new item();
+        item3.name="three";
+        item3.cost=200;
+        item3.amount=0;
+
+        int cash=1000;
+        //소비자가 가지고있는 초기 자본
+
+        int charge=cash-(item1.cost*item1.amount)-(item2.cost*item2.amount)-(item3.cost*item3.amount);
+        //charge -> 현재 금액
+
+        int temp = charge;
+
+        for (int i = 0; i < coin.length; i++) {
+            while(true) {
+                if (temp >= coin[i][0]) {
+                    temp -= coin[i][0];
+                    coin[i][1]++;
+                }
+                else break;//해당 동전을 최대한 사용
+            }
+        }
     }
 }
