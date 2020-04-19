@@ -144,17 +144,17 @@ public class MainFrame  extends JFrame {
         int[][] coin = {{500,0}, {160,0}, {100,0}, {50,0}, {10,0}}; // 동전의 종류, 사용된 갯수
 
         item item1 = new item();
-        item1.name="one";
+        item1.name="Cake";
         item1.cost=50;
         item1.amount=0;
 
         item item2 = new item();
-        item2.name="two";
+        item2.name="Drink";
         item2.cost=100;
         item2.amount=0;
 
         item item3 = new item();
-        item3.name="three";
+        item3.name="Doughnut";
         item3.cost=200;
         item3.amount=0;
 
