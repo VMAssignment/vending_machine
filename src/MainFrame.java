@@ -1,9 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 
+
+
+
 public class MainFrame  extends JFrame {
+    static class item {
+        int cost;
+        int amount;
+    }
 
     //초기화, 설정
     public void home() {
@@ -19,6 +28,101 @@ public class MainFrame  extends JFrame {
 
     public void on(){
         home(); //초기화
+
+        int[][] coin = {{500,0}, {160,0}, {100,0}, {50,0}, {10,0}}; // 동전의 종류, 사용된 갯수
+
+        item item1 = new item();
+        item1.cost=50;
+        item1.amount=0;
+
+        item item2 = new item();
+        item2.cost=100;
+        item2.amount=0;
+
+        item item3 = new item();
+        item3.cost=200;
+        item3.amount=0;
+
+        String[] cash = {"현재 금액"};
+        //소비자가 가지고있는 초기 자본, 배열을 통해 주소값으로 이용
+
+
+        JTextField itemText01 = new JTextField(Integer.toString(item1.amount), 5);
+        JTextField itemText02 = new JTextField(Integer.toString(item2.amount), 5);
+        JTextField itemText03 = new JTextField(Integer.toString(item3.amount), 5);
+        JTextField buyText = new JTextField(cash[0],10);
+        JTextField payText = new JTextField("총 금액",10);
+
+        JTextField coin10 = new JTextField("0개",3);
+        JTextField coin50 = new JTextField("0개",3);
+        JTextField coin100 = new JTextField("0개",3);
+        JTextField coin160 = new JTextField("0개",3);
+        JTextField coin500 = new JTextField("0개",3);
+        //coin 개수 초기화
+
+        JButton item1B = new JButton("추가");
+        item1B.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                item1.amount++;
+                itemText01.setText(Integer.toString(item1.amount));
+            }
+        });
+        //1번 품목에 대해서 수량 조절 버튼및 작동
+
+        JButton item2B = new JButton("추가");
+        item2B.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                item2.amount++;
+                itemText02.setText(Integer.toString(item2.amount));
+            }
+        });
+        //2번 품목에 대해서 수량 조절 버튼및 작동
+
+        JButton item3B = new JButton("추가");
+        item3B.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                item3.amount++;
+                itemText03.setText(Integer.toString(item3.amount));
+            }
+        });
+        //3번 품목에 대해서 수량 조절 버튼및 작동
+
+        JButton cashB = new JButton("시작");
+        cashB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+               cash[0] =buyText.getText();
+            }
+        });
+
+        JButton chargeB = new JButton("구매");
+        chargeB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int charge = Integer.parseInt(cash[0]) -(item1.cost*item1.amount)-(item2.cost*item2.amount)-(item3.cost*item3.amount);
+                payText.setText(Integer.toString(charge));
+                int temp = charge;
+
+                for (int i = 0; i < coin.length; i++) {
+                    while(true) {
+                        if (temp >= coin[i][0]) {
+                            temp -= coin[i][0];
+                            coin[i][1]++;
+                        }
+                        else break;//해당 동전을 최대한 사용
+                    }
+                }
+                coin10.setText(Integer.toString(coin[4][1])+"개");
+                coin50.setText(Integer.toString(coin[3][1])+"개");
+                coin100.setText(Integer.toString(coin[2][1])+"개");
+                coin160.setText(Integer.toString(coin[1][1])+"개");
+                coin500.setText(Integer.toString(coin[0][1])+"개");
+                //coin들 개수 알려주기
+            }
+        });
 
         //전체
         JPanel entire = new JPanel(new FlowLayout(1, 10, 20));
@@ -39,21 +143,19 @@ public class MainFrame  extends JFrame {
         JPanel itemPanel01 = new JPanel();
         itemPanel01.setLayout(new BorderLayout());
 
-        JTextField itemText01 = new JTextField("개수(1)", 5);
+
         itemPanel01.add(itemText01, BorderLayout.CENTER);
         itemPanel01.add(new JLabel("50원"), BorderLayout.NORTH);
-        itemPanel01.add(new JButton("추가"),  BorderLayout.EAST);
+        itemPanel01.add(item1B,  BorderLayout.EAST);
         entire.add(itemPanel01);
-
 
         //아이템, 개수, 추가 (2)
         JPanel itemPanel02 = new JPanel();
         itemPanel02.setLayout(new BorderLayout());
 
-        JTextField itemText02 = new JTextField("개수(2)", 5);
         itemPanel02.add(itemText02, BorderLayout.CENTER);
         itemPanel02.add(new JLabel("100원"), BorderLayout.NORTH);
-        itemPanel02.add(new JButton("추가"),  BorderLayout.EAST);
+        itemPanel02.add(item2B,  BorderLayout.EAST);
         entire.add(itemPanel02);
 
 
@@ -61,10 +163,9 @@ public class MainFrame  extends JFrame {
         JPanel itemPanel03 = new JPanel();
         itemPanel03.setLayout(new BorderLayout());
 
-        JTextField itemText03 = new JTextField("개수(3)", 5);
         itemPanel03.add(itemText03, BorderLayout.CENTER);
         itemPanel03.add(new JLabel("200원"), BorderLayout.NORTH);
-        itemPanel03.add(new JButton("추가"),  BorderLayout.EAST);
+        itemPanel03.add(item3B,  BorderLayout.EAST);
         entire.add(itemPanel03);
 
         entire.add(itemPanel03);
@@ -75,15 +176,14 @@ public class MainFrame  extends JFrame {
         BuyPanel.setLayout(new BorderLayout(5,10));
         BuyPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         BuyPanel.setBackground(Color.WHITE);
-
         JLabel buyLabel = new JLabel("투입금"); //투입금 텍스트
         buyLabel.setFont(new Font("맑은 고딕", Font.BOLD, 30));
         buyLabel.setHorizontalAlignment(JLabel.CENTER);
         BuyPanel.add(buyLabel, BorderLayout.NORTH);
 
-        JTextField buyText = new JTextField("현재 금액",10);
+
         BuyPanel.add(buyText, BorderLayout.CENTER);
-        BuyPanel.add(new JButton("시작"),BorderLayout.EAST);
+        BuyPanel.add(cashB,BorderLayout.EAST);
 
         entire.add(BuyPanel);
 
@@ -99,9 +199,8 @@ public class MainFrame  extends JFrame {
         payLabel.setHorizontalAlignment(JLabel.CENTER);
         PayPanel.add(payLabel, BorderLayout.NORTH);
 
-        JTextField payText = new JTextField("총 금액",10);
         PayPanel.add(payText, BorderLayout.CENTER);
-        PayPanel.add(new JButton("구매"), BorderLayout.EAST);
+        PayPanel.add(chargeB, BorderLayout.EAST);
 
         entire.add(PayPanel);
 
@@ -120,11 +219,6 @@ public class MainFrame  extends JFrame {
         String coinValue[] = {"10", "50", "100", "160", "500"};
         for(int i = 0; i<5; i++){CoinPanel.add(new JLabel(coinValue[i]+"원", JLabel.CENTER));}
 
-        JTextField coin10 = new JTextField("0개",3);
-        JTextField coin50 = new JTextField("0개",3);
-        JTextField coin100 = new JTextField("0개",3);
-        JTextField coin160 = new JTextField("0개",3);
-        JTextField coin500 = new JTextField("0개",3);
         CoinPanel.add (coin10); CoinPanel.add (coin50); CoinPanel.add (coin100); CoinPanel.add (coin160); CoinPanel.add (coin500);
 
         ChangePanel.add(CoinPanel, BorderLayout.CENTER);
@@ -134,48 +228,8 @@ public class MainFrame  extends JFrame {
     }
 
 
-    public static class item{
-        String name;
-        int cost;
-        int amount;
-    }//item 객체
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new MainFrame().on();
         Scanner scan = new Scanner(System.in);
-        int[][] coin = {{500,0}, {160,0}, {100,0}, {50,0}, {10,0}}; // 동전의 종류, 사용된 갯수
-
-        item item1 = new item();
-        item1.name="Cake";
-        item1.cost=50;
-        item1.amount=0;
-
-        item item2 = new item();
-        item2.name="Drink";
-        item2.cost=100;
-        item2.amount=0;
-
-        item item3 = new item();
-        item3.name="Doughnut";
-        item3.cost=200;
-        item3.amount=0;
-
-        int cash=1000;
-        //소비자가 가지고있는 초기 자본
-
-        int charge=cash-(item1.cost*item1.amount)-(item2.cost*item2.amount)-(item3.cost*item3.amount);
-        //charge -> 현재 금액
-
-        int temp = charge;
-
-        for (int i = 0; i < coin.length; i++) {
-            while(true) {
-                if (temp >= coin[i][0]) {
-                    temp -= coin[i][0];
-                    coin[i][1]++;
-                }
-                else break;//해당 동전을 최대한 사용
-            }
-        }
     }
 }
