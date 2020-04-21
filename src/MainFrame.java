@@ -216,10 +216,10 @@ public class MainFrame  extends JFrame {
 
         JPanel CoinPanel = new JPanel(new GridLayout(2,5, 6,3));
 
-        String coinValue[] = {"10", "50", "100", "160", "500"};
-        for(int i = 0; i<5; i++){CoinPanel.add(new JLabel(coinValue[i]+"원", JLabel.CENTER));}
+        String coinValue[] = {"10", "50", "100", "500"};
+        for(int i = 0; i<4; i++){CoinPanel.add(new JLabel(coinValue[i]+"원", JLabel.CENTER));}
 
-        CoinPanel.add (coin10); CoinPanel.add (coin50); CoinPanel.add (coin100); CoinPanel.add (coin160); CoinPanel.add (coin500);
+        CoinPanel.add (coin10); CoinPanel.add (coin50); CoinPanel.add (coin100); CoinPanel.add (coin500);
 
         ChangePanel.add(CoinPanel, BorderLayout.CENTER);
         entire.add(ChangePanel);
