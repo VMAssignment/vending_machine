@@ -29,7 +29,7 @@ public class MainFrame  extends JFrame {
     public void on(){
         home(); //초기화
 
-        int[][] coin = {{500,0}, {160,0}, {100,0}, {50,0}, {10,0}}; // 동전의 종류, 사용된 갯수
+        int[][] coin = {{500,0}, {100,0}, {50,0}, {10,0}}; // 동전의 종류, 사용된 갯수
 
         item item1 = new item();
         item1.cost=50;
@@ -56,7 +56,6 @@ public class MainFrame  extends JFrame {
         JTextField coin10 = new JTextField("0개",3);
         JTextField coin50 = new JTextField("0개",3);
         JTextField coin100 = new JTextField("0개",3);
-        JTextField coin160 = new JTextField("0개",3);
         JTextField coin500 = new JTextField("0개",3);
         //coin 개수 초기화
 
@@ -115,10 +114,9 @@ public class MainFrame  extends JFrame {
                         else break;//해당 동전을 최대한 사용
                     }
                 }
-                coin10.setText(Integer.toString(coin[4][1])+"개");
-                coin50.setText(Integer.toString(coin[3][1])+"개");
-                coin100.setText(Integer.toString(coin[2][1])+"개");
-                coin160.setText(Integer.toString(coin[1][1])+"개");
+                coin10.setText(Integer.toString(coin[3][1])+"개");
+                coin50.setText(Integer.toString(coin[2][1])+"개");
+                coin100.setText(Integer.toString(coin[1][1])+"개");
                 coin500.setText(Integer.toString(coin[0][1])+"개");
                 //coin들 개수 알려주기
             }
