@@ -3,7 +3,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 
 
@@ -140,8 +139,6 @@ public class MainFrame  extends JFrame {
         //아이템, 개수, 추가 (1)
         JPanel itemPanel01 = new JPanel();
         itemPanel01.setLayout(new BorderLayout());
-
-
         itemPanel01.add(itemText01, BorderLayout.CENTER);
         itemPanel01.add(new JLabel("50원"), BorderLayout.NORTH);
         itemPanel01.add(item1B,  BorderLayout.EAST);
@@ -150,7 +147,6 @@ public class MainFrame  extends JFrame {
         //아이템, 개수, 추가 (2)
         JPanel itemPanel02 = new JPanel();
         itemPanel02.setLayout(new BorderLayout());
-
         itemPanel02.add(itemText02, BorderLayout.CENTER);
         itemPanel02.add(new JLabel("100원"), BorderLayout.NORTH);
         itemPanel02.add(item2B,  BorderLayout.EAST);
@@ -160,13 +156,11 @@ public class MainFrame  extends JFrame {
         //아이템, 개수, 추가 (3)
         JPanel itemPanel03 = new JPanel();
         itemPanel03.setLayout(new BorderLayout());
-
         itemPanel03.add(itemText03, BorderLayout.CENTER);
         itemPanel03.add(new JLabel("200원"), BorderLayout.NORTH);
         itemPanel03.add(item3B,  BorderLayout.EAST);
         entire.add(itemPanel03);
 
-        entire.add(itemPanel03);
 
 
         //현재 금액
@@ -228,6 +222,5 @@ public class MainFrame  extends JFrame {
 
     public static void main(String[] args) {
         new MainFrame().on();
-        Scanner scan = new Scanner(System.in);
     }
 }
