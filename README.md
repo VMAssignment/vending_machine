@@ -1,9 +1,51 @@
-# vending_machine
-자판기 - Vending Machine
+# 자판기 (vending_machine)
 
-조원 : 이금주, 박세영, 석재호
 
-------
+
+## 조원
+
+이금주, 석재호, 박세영
+
+
+
+## 실행 및 사용 방법
+
+![결과 사진1](https://user-images.githubusercontent.com/62582301/80056680-b8f9fe00-855f-11ea-96ff-f809b08dab3b.png)
+
+1. 각 물건은 **50**, **100**, **200원**으로 이루어져있습니다.
+
+2. 각 물건을 몇개를 구입할 것인지는 **[추가]** 버튼을 통해 수량을 더합니다. 품목의 해당하는 '추가' 버튼을 클릭하면 개수가 1씩 증가합니다.
+
+3. 자신이 가지고 있는 금액을 투입금의 입력란에 얼마로 계산할 것인지 직접 입력하고, **[시작]** 버튼을 누릅니다.
+
+4. 전부 결정되었다면 합계금의 **[구매]** 버튼을 누릅니다.
+   *※  **[구매]**를 누르기 전,  금액이 입력되지 않으면 제대로 동작하지 않을 수 있습니다.* 
+
+5. 결과로, 잔돈을 계산한 값은 합계금에 나타나고 동전들의 개수는 각각 출력됩니다.
+
+
+
+## 실행결과 (예시)
+
+![결과 사진2](https://user-images.githubusercontent.com/62582301/80056687-bb5c5800-855f-11ea-95d5-533a616add43.png)
+
+
+
+![결과 사진3](https://user-images.githubusercontent.com/62582301/80056691-bdbeb200-855f-11ea-8bd5-16cde7aa4017.png)
+
+
+
+
+
+---
+
+
+
+
+
+## 코드 설명
+
+
 
 **Swing과 ActionEvent를 위해 import**
 
@@ -293,26 +335,4 @@ public static void main(String[] args) {
 
 ------
 
-## [실행창]
 
-
-![결과 사진1](https://user-images.githubusercontent.com/62582301/80056680-b8f9fe00-855f-11ea-96ff-f809b08dab3b.png)
-
-
-
-이용 방법 안내
-
-1. 각 품목의 해당하는 '추가' 버튼을 클릭하면 개수가 1씩 증가.
-2. 자신이 가지고 있는 금액을 투입금에 있는 입력란에 입력 후, '시작' 버튼 클릭
-3. '구매' 버튼을 클릭
-4. 결과로, 잔돈을 계산한 값은 합계금에 나타나고 동전들의 개수는 각각 출력
-
-
-
-ex)
-
-![결과 사진2](https://user-images.githubusercontent.com/62582301/80056687-bb5c5800-855f-11ea-95d5-533a616add43.png)
-
-
-
-![결과 사진3](https://user-images.githubusercontent.com/62582301/80056691-bdbeb200-855f-11ea-8bd5-16cde7aa4017.png)
